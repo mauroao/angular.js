@@ -1,11 +1,11 @@
-angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($scope, $filter, $http){
+angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($scope, $filter, contatosAPI, operadorasAPI){
 	$scope.app='Lista Telefônica';
 	
 	$scope.contatos = [];
 	$scope.operadoras = [];
 
 	var carregarContatos = function() {
-		$http.get('http://localhost:3000/api/contatos').then(function(response) {
+		contatosAPI.getContatos().then(function(response) {
 
 			$scope.contatos = response.data;
 
@@ -18,7 +18,7 @@ angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($sc
 	};
 	
 	var carregarOperadoras = function() {
-		$http.get('http://localhost:3000/api/operadoras').then(function(response) {
+		operadorasAPI.getOperadoras().then(function(response) {
 
 			$scope.operadoras = response.data;
 
@@ -33,7 +33,7 @@ angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($sc
 	$scope.adicionarContato = function(contato) {
 		contato.data = new Date();
 
-		$http.post('http://localhost:3000/api/contatos', contato).then(function(response) { 
+		 contatosAPI.saveContato(contato).then(function(response) { 
 
 			// $scope.contatos.push(angular.copy(contato)); // carregar lista
 			delete($scope.contato);
