@@ -1,0 +1,20 @@
+Git commands:
+
+	git init
+	git clone /path/to/rep directory/name
+	git status
+	git add -A
+	git commit -m "message"
+	git remote add origin path/to/rep (remember to add SSH insted)
+	git push origin master 
+	git pull origin master
+
+Bower commands:
+
+	bower init
+	bower search name
+	bower info name
+	bower install name#1.2.1 --save 
+	bower install (read config as install)
+
+
