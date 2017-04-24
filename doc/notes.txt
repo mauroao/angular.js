@@ -18,3 +18,10 @@ Bower commands:
 	bower install (read config as install)
 
 
+Linux commands:
+
+	rm -rf directory
+
+Temp:
+
+	git@github.com:mauroao/genetic-algorithm.git
