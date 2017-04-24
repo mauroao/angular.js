@@ -6,8 +6,10 @@ Git commands:
 	git add -A
 	git commit -m "message"
 	git remote add origin path/to/rep (remember to add SSH insted)
+	git remote -v
 	git push origin master 
 	git pull origin master
+	ssh -T git@github.com
 
 Bower commands:
 
