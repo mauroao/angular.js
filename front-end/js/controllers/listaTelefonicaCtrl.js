@@ -11,8 +11,8 @@ angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($sc
 
 		}, function(responseError) {
 
-			var errorMessage = 'Aconteceu um erro. Status: "' + responseError.status + '", mensagem: "' + (responseError.statusText || 'indefinido') + '"' ;
-			$scope.message = errorMessage;
+			var errorMessage = 'Não foi possível carregar os dados. Status: "' + responseError.status + '", mensagem: "' + (responseError.statusText || 'indefinido') + '"' ;
+			$scope.error = errorMessage;
 
 		});
 	};
@@ -24,8 +24,8 @@ angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($sc
 
 		}, function(responseError) {
 
-			var errorMessage = 'Aconteceu um erro. Status: "' + responseError.status + '", mensagem: "' + (responseError.statusText || 'indefinido') + '"' ;
-			$scope.message = errorMessage;
+			var errorMessage = 'Não foi possível carregar os dados. Status: "' + responseError.status + '", mensagem: "' + (responseError.statusText || 'indefinido') + '"' ;
+			$scope.error = errorMessage;
 
 		});
 	};
