@@ -1,4 +1,4 @@
-angular.module('listaTelefonica').directive('uiAccordions', function() {
+angular.module('ui').directive('uiAccordions', function() {
 	return {
 		controller: function($scope, $element, $attrs) {
 			var accordions = [];
@@ -14,9 +14,9 @@ angular.module('listaTelefonica').directive('uiAccordions', function() {
 	};
 });
 
-angular.module('listaTelefonica').directive('uiAccordion', function() {
+angular.module('ui').directive('uiAccordion', function() {
 	return {
-		templateUrl: 'js/view/accordion.html',
+		templateUrl: 'view/accordion.html',
 		transclude: true,
 		scope: {
 			title: '@'
