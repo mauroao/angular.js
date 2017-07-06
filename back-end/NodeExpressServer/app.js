@@ -8,9 +8,9 @@ app.use(bodyParser.json());
 // dados:
 
 var contatos = [
-	{serial: 'aabbccdd11', nome: 'Pedro', telefone: '99998888', data: new Date(), operadora: {nome: 'Tim'}},
-	{serial: 'aabbccdd22', nome: 'Ana', telefone: '99998877', data: new Date(), operadora: {nome: 'Tim'}},
-	{serial: 'aabbccdd33', nome: 'Maria', telefone: '99998866', data: new Date(), operadora: {nome: 'Tim'}}
+	{serial: 123456, nome: 'Pedro', telefone: '99998888', data: new Date(), operadora: {nome: 'Tim'}},
+	{serial: 234567, nome: 'Ana', telefone: '99998877', data: new Date(), operadora: {nome: 'Tim'}},
+	{serial: 891234, nome: 'Maria', telefone: '99998866', data: new Date(), operadora: {nome: 'Tim'}}
 ];
 
 var operadoras = [
