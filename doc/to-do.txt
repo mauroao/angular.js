@@ -1,0 +1,7 @@
+|  | - 0. rotina para apagar contato;
+|  | - 1. escrever a documentacão do packages do Node.js;
+|  | - 2. incluir a pasta "node_modules" no git-ignore;
+|  | - 3. instalar bower na pasta front-end;
+|  | - 4. incluir a pasta bower-components no git-ignore;
+|  | - 5. testar instalacão;
+|  | - 6. escrever documentacão da instalacão;
