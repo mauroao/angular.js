@@ -3,7 +3,8 @@ angular.module('listaTelefonica').controller('novoContatoCtrl', function($scope,
 	$scope.operadoras = operadoras.data || [];
 
 	$scope.contato  = {
-		data: 1034218800000
+		//data: 1034218800000
+		data: new Date()
 	};
 	
 	$scope.adicionarContato = function(contato) {
