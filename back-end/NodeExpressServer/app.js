@@ -8,9 +8,12 @@ app.use(bodyParser.json());
 // dados:
 
 var contatos = [
-	{serial: 123456, nome: 'Pedro', telefone: '99998888', data: new Date(), operadora: {nome: 'Tim'}},
-	{serial: 234567, nome: 'Ana', telefone: '99998877', data: new Date(), operadora: {nome: 'Tim'}},
-	{serial: 891234, nome: 'Maria', telefone: '99998866', data: new Date(), operadora: {nome: 'Tim'}}
+	{serial: 123456, nome: 'Pedro', telefone: '9999-8888', data: new Date(), operadora: {nome: 'Tim'}},
+	{serial: 234567, nome: 'Ana', telefone: '9999-8877', data: new Date(), operadora: {nome: 'Tim'}},
+	{serial: 891234, nome: 'Maria', telefone: '9999-8866', data: new Date(), operadora: {nome: 'Tim'}},
+	{serial: 923450, nome: 'Antonio da Silva', telefone: '9999-2888', data: new Date(), operadora: {nome: 'Tim'}},
+	{serial: 934560, nome: 'Ana da Silva', telefone: '9999-8872', data: new Date(), operadora: {nome: 'Tim'}},
+	{serial: 991230, nome: 'Rubens da Silva', telefone: '9999-8826', data: new Date(), operadora: {nome: 'Tim'}}
 ];
 
 var operadoras = [
@@ -25,6 +28,7 @@ var operadoras = [
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -39,9 +43,43 @@ app.get('/api/contatos', function(req, res) {
 	res.json(contatos);
 });
 
+app.get('/api/contatos/:contatoId', function(req, res) { 	
+	var contatoId = (req.params.contatoId || 0);
+
+	var busca = contatos.filter(function(contatoProcurado){
+		return contatoProcurado.serial == contatoId;
+	});
+
+	if (busca.length == 0) {	
+		res.status(404).send('Not found');
+		return;	
+	};	
+
+	res.json(busca[0]);
+});
+
 app.post('/api/contatos', function(req, res) { 	
 	contatos.push(req.body)
 	res.json(req.body);
+});
+
+app.delete('/api/contatos/:contatoId', function(req, res) {
+	var contatoId = (req.params.contatoId || 0);
+
+	var busca = contatos.filter(function(contatoProcurado){
+		return contatoProcurado.serial == contatoId;
+	});
+
+	if (busca.length == 0) {
+		res.json({deleted: false});	
+		return;	
+	};
+
+	contatos = contatos.filter(function(contatoProcurado){
+		return contatoProcurado.serial != contatoId;
+	});
+
+	res.json({deleted: true});
 });
 
 app.get('/api/operadoras', function(req, res) { 		

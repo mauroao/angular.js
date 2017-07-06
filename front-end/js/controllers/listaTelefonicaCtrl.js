@@ -3,24 +3,29 @@ angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($sc
 	
 	$scope.contatos = contatos.data;
 
-	var carregarContatos = function() {
-		contatosAPI.getContatos().then(function(response) {
+	var apagarUmContato = function(serial) {
+		contatosAPI.deleteContato(serial).then(function(response) {
 
-			$scope.contatos = response.data;
+			if (response.data.deleted) {
+				$scope.contatos = $scope.contatos.filter(function(contato) {
+					return contato.serial != serial;
+				});
+			};
 
 		}, function(responseError) {
 
-			var errorMessage = 'Não foi possível carregar os dados. Status: "' + responseError.status + '", mensagem: "' + (responseError.statusText || 'indefinido') + '"' ;
+			var errorMessage = 'Não foi possível excluir o contato. Status: "' + responseError.status + '", mensagem: "' + (responseError.statusText || 'indefinido') + '"' ;
 			$scope.error = errorMessage;
-
 		});
 	};
 
 	$scope.apagarContatos = function(contatos) {
-		$scope.contatos = contatos.filter(function(contato) {
-			if (!contato.selecionado) {
-				return contato;
-			}
+		var contatosExcluir = $scope.contatos.filter(function(contato) {
+			return contato.selecionado;
+		});
+
+		contatosExcluir.forEach(function(item, index) {
+			apagarUmContato(item.serial);
 		});
 	};
 
@@ -29,9 +34,10 @@ angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($sc
 			return contato.selecionado;
 		});
 	};
+
 	$scope.ordernarPor = function(campo) {
 		$scope.criterioDeOrdenacao = campo;
 	}; 
 
-}) ;
+});
 

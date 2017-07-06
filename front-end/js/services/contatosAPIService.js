@@ -8,8 +8,13 @@ angular.module('listaTelefonica').factory('contatosAPI', function($http, configV
 		return $http.post(configValues.apiBaseUrl + '/contatos', contato);
 	};
 
+	var _deleteContato = function(serial) {
+		return $http.delete(configValues.apiBaseUrl + '/contatos/' + serial);
+	};	
+
 	return {
 		getContatos: _getContatos,
-		saveContato: _saveContato
+		saveContato: _saveContato,
+		deleteContato: _deleteContato
 	};
 });
