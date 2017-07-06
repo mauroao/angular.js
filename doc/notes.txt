@@ -27,3 +27,20 @@ Linux commands:
 Temp:
 
 	git@github.com:mauroao/genetic-algorithm.git
+
+
+	/*
+	var carregarOperadoras = function() {
+		operadorasAPI.getOperadoras().then(function(response) {
+
+			$scope.operadoras = response.data;
+
+		}, function(responseError) {
+
+			var errorMessage = 'Não foi possível carregar os dados. Status: "' + responseError.status + '", mensagem: "' + (responseError.statusText || 'indefinido') + '"' ;
+			$scope.error = errorMessage;
+
+		});
+	};
+	*/
+	

@@ -1,22 +1,9 @@
-angular.module('listaTelefonica').controller('novoContatoCtrl', function($scope, contatosAPI, operadorasAPI, serialGenerator, $location){
+angular.module('listaTelefonica').controller('novoContatoCtrl', function($scope, contatosAPI, serialGenerator, $location, operadoras){
 	
-	$scope.operadoras = [];
+	$scope.operadoras = operadoras.data || [];
 
 	$scope.contato  = {
 		data: 1034218800000
-	};
-
-	var carregarOperadoras = function() {
-		operadorasAPI.getOperadoras().then(function(response) {
-
-			$scope.operadoras = response.data;
-
-		}, function(responseError) {
-
-			var errorMessage = 'Não foi possível carregar os dados. Status: "' + responseError.status + '", mensagem: "' + (responseError.statusText || 'indefinido') + '"' ;
-			$scope.error = errorMessage;
-
-		});
 	};
 	
 	$scope.adicionarContato = function(contato) {
@@ -33,6 +20,5 @@ angular.module('listaTelefonica').controller('novoContatoCtrl', function($scope,
 		});
 	};
 
-	carregarOperadoras();
 });
 
