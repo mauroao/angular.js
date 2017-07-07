@@ -1,11 +1,11 @@
 angular.module('listaTelefonica').factory('contatosAPI', function($http, configValues) {
 
 	var _getContatos = function() {
-		return $http.get(configValues.apiBaseUrl +'/contatos?antiCache='+(new Date()).toString());
+		return $http.get(configValues.apiBaseUrl +'/contatos/');
 	};
 
 	var _getContato = function(serial) {
-		return $http.get(configValues.apiBaseUrl +'/contatos/' + serial +'?antiCache='+(new Date()).toString());
+		return $http.get(configValues.apiBaseUrl +'/contatos/' + serial);
 	};
 
 	var _saveContato = function(contato) {
