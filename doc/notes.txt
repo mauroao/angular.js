@@ -1,3 +1,10 @@
+Install
+
+	1. Go to "back-end/NodeExpressServer/";
+	2. run "npm install";
+	3. Go to "front-end";
+	4. run "bower install";
+
 Git commands:
 
 	git init
@@ -9,6 +16,7 @@ Git commands:
 	git remote -v
 	git push origin master 
 	git pull origin master
+	git diff --name-only
 	ssh -T git@github.com
 
 Bower commands:
@@ -19,6 +27,11 @@ Bower commands:
 	bower install name#1.2.1 --save 
 	bower install (read config as install)
 
+Npm commands:
+
+	npm init
+	npm install name --save
+	npm install (read config as install)
 
 Linux commands:
 
@@ -27,20 +40,4 @@ Linux commands:
 Temp:
 
 	git@github.com:mauroao/genetic-algorithm.git
-
-
-	/*
-	var carregarOperadoras = function() {
-		operadorasAPI.getOperadoras().then(function(response) {
-
-			$scope.operadoras = response.data;
-
-		}, function(responseError) {
-
-			var errorMessage = 'Não foi possível carregar os dados. Status: "' + responseError.status + '", mensagem: "' + (responseError.statusText || 'indefinido') + '"' ;
-			$scope.error = errorMessage;
-
-		});
-	};
-	*/
 	
