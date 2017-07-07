@@ -18,7 +18,7 @@
 			<tr ng-class="{selecionado : contato.selecionado}" ng-repeat="contato in contatos | filter: {nome: criterioDeBusca} | orderBy: criterioDeOrdenacao" >
 				<td> <input type="checkbox" ng-model="contato.selecionado" name=""> </td>
 				<td>{{contato.serial}}</td>
-				<td>{{contato.nome | name | ellipsis:10}}</td>
+				<td> <a href="#!/detalhesContato/{{contato.serial}}"> {{contato.nome | name | ellipsis:10}} </a> </td>
 				<td>{{contato.telefone}}</td>
 				<td>{{contato.operadora.nome}}</td>
 				<td>{{contato.data | date: 'dd/MM/yyyy HH:mm' }}</td>

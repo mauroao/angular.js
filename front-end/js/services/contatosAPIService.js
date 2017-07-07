@@ -3,7 +3,11 @@ angular.module('listaTelefonica').factory('contatosAPI', function($http, configV
 	var _getContatos = function() {
 		return $http.get(configValues.apiBaseUrl +'/contatos?antiCache='+(new Date()).toString());
 	};
-	
+
+	var _getContato = function(serial) {
+		return $http.get(configValues.apiBaseUrl +'/contatos/' + serial +'?antiCache='+(new Date()).toString());
+	};
+
 	var _saveContato = function(contato) {
 		return $http.post(configValues.apiBaseUrl + '/contatos', contato);
 	};
@@ -15,6 +19,7 @@ angular.module('listaTelefonica').factory('contatosAPI', function($http, configV
 	return {
 		getContatos: _getContatos,
 		saveContato: _saveContato,
-		deleteContato: _deleteContato
+		deleteContato: _deleteContato,
+		getContato: _getContato
 	};
 });
