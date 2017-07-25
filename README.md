@@ -32,4 +32,6 @@ Copiar o diretório `front-end` para dentro de um diretório do webserver. Logo 
 
 `http://localhost:8080/front-end`
 
+## Back-end alternativo em Java
 
+* [Java Jersey RESTful API](https://github.com/mauroao/java-jersey-rest-api)
