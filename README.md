@@ -10,7 +10,7 @@ Este projeto contém o código fonte e instruções para rodar o aplicativo **Li
 
 * [Node.js](https://nodejs.org/en/);
 * [Bower](https://bower.io);
-* Um Webserver qualquer, para rodar a página principal, como o [Apache Tomcat®](https://tomcat.apache.org/) ou [nginx](https://nginx.org/en/);
+* Um Webserver qualquer, para rodar a página principal, como o [Apache HTTP Server ](https://httpd.apache.org/) ou [nginx](https://nginx.org/en/);
 
 ## Como instalar
 
