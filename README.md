@@ -23,14 +23,18 @@ Este projeto contém o código fonte e instruções para rodar o aplicativo **Li
 
 ## Como executar
 
+### Back-End
+
 Executar a aplicação back-end que fornece a API REST com os dados da lista telefônica:
 
 * `cd back-end/NodeExpressServer/` - entrar no diretório;
 * `node app.js` - subir o servidor;
 
-Opcão 1: Publicar o diretório `front-end` para dentro do diretório de um webserver, como o ([Apache HTTP Server ](https://httpd.apache.org/) ou [nginx](https://nginx.org/en/)). 
+### Front-End
 
-Opcão 2: Dentro do diretório `front-end`, executar um webserver como o [http-server](https://www.npmjs.com/package/http-server);
+**Opcão 1**: Publicar o diretório `front-end` para dentro do diretório de um webserver, como o [Apache HTTP Server ](https://httpd.apache.org/) ou [nginx](https://nginx.org/en/). 
+
+**Opcão 2**: Dentro do diretório `front-end`, executar um webserver como o [http-server](https://www.npmjs.com/package/http-server);
 
 Logo em seguida, abrir a página no navegador. Exemplo:
 
