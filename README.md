@@ -10,7 +10,7 @@ Este projeto contém o código fonte e instruções para rodar o aplicativo **Li
 
 * [Node.js](https://nodejs.org/en/);
 * [Bower](https://bower.io);
-* Um Webserver qualquer, para rodar a página principal, como o [Apache HTTP Server ](https://httpd.apache.org/) ou [nginx](https://nginx.org/en/);
+* Um Webserver qualquer, para rodar a página principal, como o [Apache HTTP Server ](https://httpd.apache.org/),  [nginx](https://nginx.org/en/) ou [http-server](https://www.npmjs.com/package/http-server);
 
 ## Como instalar
 
@@ -28,7 +28,11 @@ Executar a aplicação back-end que fornece a API REST com os dados da lista tel
 * `cd back-end/NodeExpressServer/` - entrar no diretório;
 * `node app.js` - subir o servidor;
 
-Copiar o diretório `front-end` para dentro de um diretório do webserver. Logo em seguida, abrir a página no navegador. Exemplo:
+Opcão 1: Publicar o diretório `front-end` para dentro do diretório de um webserver, como o ([Apache HTTP Server ](https://httpd.apache.org/) ou [nginx](https://nginx.org/en/)). 
+
+Opcão 2: Dentro do diretório `front-end`, executar um webserver como o [http-server](https://www.npmjs.com/package/http-server);
+
+Logo em seguida, abrir a página no navegador. Exemplo:
 
 `http://localhost:8080/front-end`
 
