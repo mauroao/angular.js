@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="listaTelefonica">
+<head>
+	<title>Lista Telefônica</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script src="scripts.js"></script>
+</head>
+<body>
+	<div ng-show="loading">
+		Carregando...
+	</div>
+
+	<div ng-hide="loading">
+		<div ng-view>
+			
+		</div>		
+	</div>
+</body>
+</html> 

@@ -10,7 +10,7 @@ angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($sc
 				$scope.contatos = $scope.contatos.filter(function(contato) {
 					return contato.serial != serial;
 				});
-			};
+			}
 
 		}, function(responseError) {
 

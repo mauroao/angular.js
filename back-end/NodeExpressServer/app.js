@@ -88,7 +88,9 @@ app.get('/api/operadoras', function(req, res) {
 
 // server:
 
-app.listen(3000, function () {
+var port = process.env.PORT;
+
+app.listen(port || 3000, function () {
   console.log('Example app listening on port 3000!');
 });
 

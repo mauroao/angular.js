@@ -20,6 +20,7 @@ Este projeto contém o código fonte e instruções para rodar o aplicativo **Li
 4. `cd ../..`- retornar ao diretório principal;
 4. `cd front-end` - entrar no diretório;
 5. `bower install` - executar o comando para instalar os pacotes do bower;
+6. `npm install` - executar o comando para instalar os pacotes;
 
 ## Como executar
 
@@ -40,6 +41,21 @@ Logo em seguida, abrir a página no navegador. Exemplo:
 
 `http://localhost:8080/front-end`
 
+## Deploy
+
+É necessário ter instalado o [Grunt](https://gruntjs.com/) para gerar o deploy da aplicacão front-end.
+
+1. `cd front-end` - entrar no diretório;
+2. `grunt prod` - executar o comando para gerar a distribuicão;
+
+O conteúdo da distribuicão será gerado na pasta `front-end/dist`.
+
+
 ## Back-end alternativo em Java
 
 * [Java Jersey RESTful API](https://github.com/mauroao/java-jersey-rest-api)
+
+## Back-end alternativo na nuvem (verificar se está no ar)
+
+* [mauroao.openode.io/](http://mauroao.openode.io/)
+
