@@ -1,9 +1,8 @@
 angular.module('listaTelefonica').controller('novoContatoCtrl', function($scope, contatosAPI, serialGenerator, $location, operadoras){
 	
-	$scope.operadoras = operadoras.data || [];
+	$scope.operadoras = operadoras || [];
 
 	$scope.contato  = {
-		//data: 1034218800000
 		data: new Date()
 	};
 	
@@ -11,12 +10,9 @@ angular.module('listaTelefonica').controller('novoContatoCtrl', function($scope,
 		
 		contato.serial = serialGenerator.generate();
 
-		contatosAPI.saveContato(contato).then(function(response) { 
-
-			// $scope.contatos.push(angular.copy(contato)); // carregar lista
+		contatosAPI.saveContato(contato).then(function() { 
 			delete($scope.contato);
 			$scope.contatoForm.$setPristine();
-			
 			$location.path('/contatos');
 		});
 	};

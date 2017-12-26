@@ -1,20 +1,14 @@
 angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($scope, $filter, contatosAPI, contatos){
 	$scope.app='Lista Telefônica';
 	
-	$scope.contatos = contatos.data;
+	$scope.contatos = contatos;
 
 	var apagarUmContato = function(serial) {
-		contatosAPI.deleteContato(serial).then(function(response) {
-
-			if (response.data.deleted) {
-				$scope.contatos = $scope.contatos.filter(function(contato) {
-					return contato.serial != serial;
-				});
-			}
-
-		}, function(responseError) {
-
-			var errorMessage = 'Não foi possível excluir o contato. Status: "' + responseError.status + '", mensagem: "' + (responseError.statusText || 'indefinido') + '"' ;
+		contatosAPI.deleteContato(serial).then(function() {
+			$scope.contatos = $scope.contatos.filter(function(contato) {
+				return contato.serial != serial;
+			});
+		}, function(errorMessage) {
 			$scope.error = errorMessage;
 		});
 	};
