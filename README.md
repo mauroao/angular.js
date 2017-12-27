@@ -55,7 +55,11 @@ O conteúdo da distribuicão será gerado na pasta `front-end/dist`.
 
 * [Java Jersey RESTful API](https://github.com/mauroao/java-jersey-rest-api)
 
-## Back-end alternativo na nuvem (verificar se está no ar)
+## Back-end alternativo na nuvem - Noje.js 
 
 * [mauroao.openode.io/](http://mauroao.openode.io/)
 
+## Back-end alternativo na nuvem - Firebase/Firestore
+
+Foi incluída a opcão de persistência de dados no novo servico de banco de dados NoSQL do google: [Firebase](https://firebase.google.com).
+Para alternar a origem dos dados que o front-end irá utilizar, será necessário renomear no arquivo index.html, a origem dos servicos (diretório services/http/ ou services/firestore).
