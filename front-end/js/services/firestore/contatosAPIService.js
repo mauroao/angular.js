@@ -1,41 +1,80 @@
-angular.module('listaTelefonica').factory('contatosAPI', function($http, $q, configValues) {
+angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $location, $q, configValues, fireStoreService) {
 
-	var _getContatos = function() {		
+	var _getContatos = function() {	
+		$rootScope.loading = true;	
 		return $q(function(resolve, reject) {
-			$http.get(configValues.apiBaseUrl +'/contatos/').then(function(retorno) {
-				resolve(retorno.data);
-			},function(erro) {
-				reject(erro);
+			fireStoreService.db.collection('contatos').get()
+			.then(function(data) {
+				var _contatos = data.docs.map(function(item) {
+					return item.data();
+				});
+				$rootScope.loading = false;
+				resolve(_contatos);
+			})
+			.catch(function(err) {
+				$rootScope.loading = false;
+				reject(err);
 			});
 		});
 	};
 
 	var _getContato = function(serial) {
+		$rootScope.loading = true;
 		return $q(function(resolve, reject) {
-			$http.get(configValues.apiBaseUrl +'/contatos/' + serial).then(function(retorno) {
-				resolve(retorno.data);
-			},function(erro) {
-				reject(erro);
+			var docRef = fireStoreService.db.collection('contatos').doc(serial);
+
+			docRef.get().then(function(doc) {
+				if (doc.exists) {
+					$rootScope.loading = false;
+					resolve(doc.data());
+				} else {
+					console.log('contato não encontrado');
+					$location.path('/error');
+					reject();
+				}
+			})
+			.catch(function(err) {
+				$rootScope.loading = false;
+				reject(err);
 			});
-		});	
+		});
 	};
 
 	var _saveContato = function(contato) {
-		return $http.post(configValues.apiBaseUrl + '/contatos', contato);
+		$rootScope.loading = true;
+		return $q(function(resolve, reject) {
+			// fireStoreService.db.collection('contatos').add(contato).then(function() {
+			fireStoreService.db.collection('contatos')
+			.doc(contato.serial)
+			.set(contato)
+			.then(function() {
+				$rootScope.loading = false;
+				resolve();
+			})
+			.catch(function() {
+				$rootScope.loading = false;
+				reject();
+			});
+		});
 	};
 
 	var _deleteContato = function(serial) {
+		$rootScope.loading = true;
 		return $q(function(resolve, reject) {
-			$http.delete(configValues.apiBaseUrl + '/contatos/' + serial).then(function(retorno) {
-				if (retorno.data && retorno.data.deleted) {
-					resolve();
-				} else {
-					reject('Erro ao excluir registro ' + serial);
-				}
-			},function(erro) {
-				reject('Erro ao excluir registro ' + serial);
+			var docRef = fireStoreService.db.collection('contatos').doc(serial);
+			
+			docRef.delete().then(function() {
+				$rootScope.loading = false;
+				resolve();
+			})
+			.catch(function(err) {
+				$rootScope.loading = false;
+				console.log('contato '+serial+' nao pode ser excluido.');
+				console.log(err);
+				reject(err);
 			});
-		});		
+
+		});
 	};	
 
 	return {

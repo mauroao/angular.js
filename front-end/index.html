@@ -8,6 +8,10 @@
 	<link rel="stylesheet" type="text/css" href="css/app.css">
 	<link rel="stylesheet" type="text/css" href="css/ui.css">
 
+	<!--scripts do Firebase/FireStore-->
+	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-firestore.js"></script>
+
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script src="lib/angular/angular-locale_pt-br.js"></script>
@@ -20,8 +24,14 @@
 	<script src="js/controllers/novoContatoCtrl.js"></script> 
 	<script src="js/controllers/detalhesContatoCtrl.js"></script> 
 
+	<script src="js/services/firestore/fireStoreService.js"></script>
+	<script src="js/services/firestore/contatosAPIService.js"></script>
+	<script src="js/services/firestore/operadorasAPIService.js"></script>
+
+	<!--
 	<script src="js/services/http/contatosAPIService.js"></script>
-	<script src="js/services/http/operadorasAPIService.js"></script>
+	<script src="js/services/http/operadorasAPIService.js"></script>	
+	-->
 
 	<script src="js/filters/nameFilter.js"></script>
 	<script src="js/filters/ellipsisFilter.js"></script>
@@ -45,19 +55,6 @@
 			
 		</div>		
 	</div>
-
-	<!-- 
-		<div ui-accordions class="panel panel-default">
-			<div ui-accordion title="Accordion 1">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
-			<div ui-accordion title="Accordion 2">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>			
-		</div>
-
-		<hr >		
-		-->
 
 </body>
 </html> 

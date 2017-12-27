@@ -1,11 +1,16 @@
-angular.module('listaTelefonica').service('operadorasAPI', function($http, configValues, $q){
+angular.module('listaTelefonica').service('operadorasAPI', function($q, configValues, fireStoreService){
 	this.getOperadoras = function() {
 		return $q(function(resolve, reject) {
-			$http.get(configValues.apiBaseUrl + '/operadoras').then(function(retorno) {
-				resolve(retorno.data);
-			},function(erro) {
-				reject(erro);
+			fireStoreService.db.collection('operadoras').get()
+			.then(function(data) {
+				var _operadoras = data.docs.map(function(item) {
+					return item.data();
+				});
+				resolve(_operadoras);
+			})
+			.catch(function(err) {
+				reject(err);
 			});
-		});		
+		});
 	};
 });
