@@ -50,6 +50,9 @@ Logo em seguida, abrir a página no navegador. Exemplo:
 
 O conteúdo da distribuicão será gerado na pasta `front-end/dist`.
 
+## Back-end alternativo em ASP.NET MVC Web API
+
+* [ASP.NET Web API](https://github.com/mauroao/asp-net-web-api)
 
 ## Back-end alternativo em Java
 
