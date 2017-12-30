@@ -4,13 +4,15 @@
 
 Este projeto contém o código fonte e instruções para rodar o aplicativo **Lista Telefônica**, que faz parte do curso de Angular JS do [Rodrigo Branas](https://www.youtube.com/user/rodrigobranas).
 
+O objetivo deste projeto é manter um histórico do aprendizado que tive com esse curso, bem como o exercício de implementação de diversas ferramentas de desenvolvimento open source, como Bower, Grunt, Node, Npm, live-server, angularjs, firebase, etc...
+
 ## Pré requisitos
 
 É necessário ter as ferramentas abaixo:
 
 * [Node.js](https://nodejs.org/en/);
 * [Bower](https://bower.io);
-* Um Webserver qualquer, para rodar a página principal, como o [Apache HTTP Server ](https://httpd.apache.org/),  [nginx](https://nginx.org/en/) ou [http-server](https://www.npmjs.com/package/http-server);
+* Um Webserver para rodar a página principal, como o [http-server](https://www.npmjs.com/package/http-server) ou [live-server](https://www.npmjs.com/package/live-server);
 
 ## Como instalar
 
@@ -33,9 +35,7 @@ Executar a aplicação back-end que fornece a API REST com os dados da lista tel
 
 ### Front-End
 
-**Opcão 1**: Publicar o diretório `front-end` para dentro do diretório de um webserver, como o [Apache HTTP Server ](https://httpd.apache.org/) ou [nginx](https://nginx.org/en/). 
-
-**Opcão 2**: Dentro do diretório `front-end`, executar um webserver como o [http-server](https://www.npmjs.com/package/http-server);
+Dentro do diretório `front-end`, executar um webserver como o [http-server](https://www.npmjs.com/package/http-server) ou [live-server](https://www.npmjs.com/package/live-server);
 
 Logo em seguida, abrir a página no navegador. Exemplo:
 
