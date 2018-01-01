@@ -67,4 +67,4 @@ O conteúdo da distribuicão será gerado na pasta `front-end/dist`.
 Foi incluída a opcão de persistência de dados no novo servico de banco de dados NoSQL do google: [Firebase](https://firebase.google.com).
 Para alternar a origem dos dados que o front-end irá utilizar, será necessário renomear no arquivo index.html, a origem dos servicos (diretório services/http/ ou services/firestore).
 
-Uma versão publicada do aplicativo funcionando com base de dados Firebase está disponível [aqui](https://mauroao.github.io/site1/#!/contatos)
+Uma versão publicada do aplicativo funcionando com base de dados Firebase está disponível [aqui](https://mauroao.github.io/angular.js)
