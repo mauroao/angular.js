@@ -1,4 +1,4 @@
-# Curso de Angular JS do Rodrigo Branas
+# Angular JS
 
 ## Introdução
 
