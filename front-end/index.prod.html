@@ -3,6 +3,8 @@
 <head>
 	<title>Lista Telefônica</title>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
 	<link rel="stylesheet" type="text/css" href="styles.css">
 
 	<!--scripts do Firebase/FireStore-->
@@ -16,10 +18,11 @@
 		Carregando...
 	</div>
 
-	<div ng-hide="loading">
+	<div ng-hide="loading" class="container-fluid">
 		<div ng-view>
 			
 		</div>		
 	</div>
+	
 </body>
 </html> 

@@ -36,7 +36,7 @@ app.use(function(req, res, next) {
 // api:
 
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  res.send('REST API is Working ! Access: /api/contatos');
 });
 
 app.get('/api/contatos', function(req, res) { 		
