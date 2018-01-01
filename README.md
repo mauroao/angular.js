@@ -1,5 +1,7 @@
 # Angular JS
 
+![angular logo](https://mauroao.github.io/angular.js/angular.png)
+
 ## Introdução
 
 Este projeto contém o código fonte e instruções para rodar o aplicativo **Lista Telefônica**, que faz parte do curso de Angular JS do [Rodrigo Branas](https://www.youtube.com/user/rodrigobranas).
