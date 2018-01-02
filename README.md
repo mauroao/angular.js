@@ -63,6 +63,12 @@ O conteúdo da distribuicão será gerado na pasta `front-end/dist`.
 ## Back-end alternativo na nuvem - Firebase/Firestore
 
 Foi incluída a opcão de persistência de dados no novo servico de banco de dados NoSQL do google: [Firebase](https://firebase.google.com).
-Para alternar a origem dos dados que o front-end irá utilizar, será necessário renomear no arquivo index.html, a origem dos servicos (diretório services/http/ ou services/firestore).
+
+Para selecionar qual será a origem dos dados que o front-end irá utilizar, seguir o procedimento abaixo:
+
+1. Editar o arquivo index.html;
+2. Localizar as linhas onde os arquivos de serviço são referenciados;
+3. Para Firebase, alterar o caminho para `services/firestore/`;
+4. Para serviço REST, alterar o caminho para `services/http/`;
 
 Uma versão publicada do aplicativo funcionando com base de dados Firebase está disponível [aqui](https://mauroao.github.io/angular.js)
