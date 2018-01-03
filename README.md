@@ -1,4 +1,4 @@
-# Angular JS
+# SPA App com Angular JS
 
 ![angular logo](https://mauroao.github.io/angular.js/angular.png)
 
