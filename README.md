@@ -18,7 +18,7 @@ O objetivo deste projeto é manter um histórico do aprendizado que tive com ess
 
 ## Como instalar
 
-1. `git clone https://github.com/mauroao/angular.js.git` - clonar do github;
+1. `git clone git@github.com:mauroao/angular.js.git` - clonar do github;
 2. `cd angular.js` - entrar no diretório da aplicacão;
 3. `npm install` - instalar os pacotes npm;
 
