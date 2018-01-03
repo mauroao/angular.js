@@ -13,15 +13,14 @@ O objetivo deste projeto é manter um histórico do aprendizado que tive com ess
 É necessário ter as ferramentas abaixo:
 
 * [Node.js](https://nodejs.org/en/);
-* [Bower](https://bower.io);
+* [Grunt](https://gruntjs.com/)
 * Um Webserver para rodar a página principal, como o [http-server](https://www.npmjs.com/package/http-server) ou [live-server](https://www.npmjs.com/package/live-server);
 
 ## Como instalar
 
-1. clonar do github;
-2. entrar no diretório da aplicacão;
-3. `bower install` - executar o comando para instalar os pacotes do bower;
-4. `npm install` - executar o comando para instalar os pacotes npm;
+1. `git clone https://github.com/mauroao/angular.js.git` - clonar do github;
+2. `cd angular.js` - entrar no diretório da aplicacão;
+3. `npm install` - instalar os pacotes npm;
 
 ## Como executar
 
@@ -32,8 +31,6 @@ Logo em seguida, abrir a página no navegador. Exemplo:
 `http://localhost:8080/front-end`
 
 ## Deploy
-
-É necessário ter instalado o [Grunt](https://gruntjs.com/) para gerar o deploy da aplicacão front-end.
 
 Executar o comando `grunt prod` para gerar a distribuicão na pasta `docs/` (diretório padrão para publicacão no [github.io](https://github.io)).
 
