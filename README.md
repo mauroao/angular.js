@@ -19,25 +19,13 @@ O objetivo deste projeto é manter um histórico do aprendizado que tive com ess
 ## Como instalar
 
 1. clonar do github;
-2. `cd back-end/NodeExpressServer/` - entrar no diretório;
-3. `npm install` - executar o comando para instalar os pacotes npm;
-4. `cd ../..`- retornar ao diretório principal;
-4. `cd front-end` - entrar no diretório;
-5. `bower install` - executar o comando para instalar os pacotes do bower;
-6. `npm install` - executar o comando para instalar os pacotes;
+2. entrar no diretório da aplicacão;
+3. `bower install` - executar o comando para instalar os pacotes do bower;
+4. `npm install` - executar o comando para instalar os pacotes npm;
 
 ## Como executar
 
-### Back-End
-
-Executar a aplicação back-end que fornece a API REST com os dados da lista telefônica:
-
-* `cd back-end/NodeExpressServer/` - entrar no diretório;
-* `node app.js` - subir o servidor;
-
-### Front-End
-
-Dentro do diretório `front-end`, executar um webserver como o [http-server](https://www.npmjs.com/package/http-server) ou [live-server](https://www.npmjs.com/package/live-server);
+Executar um webserver como o [http-server](https://www.npmjs.com/package/http-server) ou [live-server](https://www.npmjs.com/package/live-server);
 
 Logo em seguida, abrir a página no navegador. Exemplo:
 
@@ -47,10 +35,7 @@ Logo em seguida, abrir a página no navegador. Exemplo:
 
 É necessário ter instalado o [Grunt](https://gruntjs.com/) para gerar o deploy da aplicacão front-end.
 
-1. `cd front-end` - entrar no diretório;
-2. `grunt prod` - executar o comando para gerar a distribuicão;
-
-O conteúdo da distribuicão será gerado na pasta `front-end/dist`.
+Executar o comando `grunt prod` para gerar a distribuicão na pasta `docs/` (diretório padrão para publicacão no [github.io](https://github.io)).
 
 
 ## Back-end em Express 

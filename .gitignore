@@ -1,3 +1,2 @@
-back-end/NodeExpressServer/node_modules/
-front-end/bower_components/
-front-end/node_modules/
+bower_components/
+node_modules/
