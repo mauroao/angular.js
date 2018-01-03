@@ -1,14 +1,21 @@
-angular.module('listaTelefonica').service('fireStoreService', function(configValues){
+angular.module('listaTelefonica').service('fireStoreService', function($location, $rootScope, configValues){
+
+	$rootScope.api_version = 'Versão Firebase REST api. Adress="'+ configValues.firestoreConfig.databaseURL+ '"';
+
 	var _db;
 
 	try {
+		$rootScope.loading = true;
 		firebase.initializeApp(configValues.firestoreConfig);
 		_db = firebase.firestore();
 	}
 	catch (e) {
-		console.log(e);
-		alert('Erro ao conectar com firebase');
+		var msg = (e && e.message) ? e.message : '';
+		$rootScope.loading = false;
+		console.log('Erro ao conectar com firebase - ' + msg);	
+		$location.path('/error');
 	}
 
+	$rootScope.loading = false;
 	this.db = _db;
 });

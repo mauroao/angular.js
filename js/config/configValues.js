@@ -1,5 +1,5 @@
 angular.module('listaTelefonica').value('configValues', {	
-	apiBaseUrl: 'http://mauroao.openode.io/api',
+	apiBaseUrl: 'https://mauroao-lista-telefonica-api.herokuapp.com/api',
 	firestoreConfig: { 
 		apiKey: 'AIzaSyDOvpRFiUUnTNlJr2Nh9L1K0eWWiBP8lTc',
 		authDomain: 'projetofirestore.firebaseapp.com',
@@ -18,5 +18,5 @@ angular.module('listaTelefonica').value('configValues', {
 
 /* 
 	url do servico do node js na nuvem
-	apiBaseUrl: 'http://mauroao.openode.io/api' 
+	apiBaseUrl: 'https://mauroao-lista-telefonica-api.herokuapp.com/api' 
 */

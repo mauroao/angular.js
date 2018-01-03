@@ -645,21 +645,33 @@ angular.module('listaTelefonica').controller('novoContatoCtrl', function($scope,
 angular.module('listaTelefonica').controller('detalhesContatoCtrl', function($scope, $routeParams, contato) {
 	$scope.contato = contato;
 });
-angular.module('listaTelefonica').service('fireStoreService', function(configValues){
+angular.module('listaTelefonica').service('fireStoreService', function($location, $rootScope, configValues){
+
+	$rootScope.api_version = 'Versão Firebase REST api. Adress="'+ configValues.firestoreConfig.databaseURL+ '"';
+
 	var _db;
 
 	try {
+		$rootScope.loading = true;
 		firebase.initializeApp(configValues.firestoreConfig);
 		_db = firebase.firestore();
 	}
 	catch (e) {
-		console.log(e);
-		alert('Erro ao conectar com firebase');
+		var msg = (e && e.message) ? e.message : '';
+		$rootScope.loading = false;
+		console.log('Erro ao conectar com firebase - ' + msg);	
+		$location.path('/error');
 	}
 
+	$rootScope.loading = false;
 	this.db = _db;
 });
 angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $location, $q, configValues, fireStoreService) {
+
+	var _handleError = function() {
+		$rootScope.loading = false;
+		$location.path('/error');
+	};
 
 	var _getContatos = function() {	
 		$rootScope.loading = true;	
@@ -673,7 +685,7 @@ angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $l
 				resolve(_contatos);
 			})
 			.catch(function(err) {
-				$rootScope.loading = false;
+				_handleError();
 				reject(err);
 			});
 		});
@@ -695,7 +707,7 @@ angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $l
 				}
 			})
 			.catch(function(err) {
-				$rootScope.loading = false;
+				_handleError();
 				reject(err);
 			});
 		});
@@ -713,7 +725,7 @@ angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $l
 				resolve();
 			})
 			.catch(function() {
-				$rootScope.loading = false;
+				_handleError();
 				reject();
 			});
 		});
@@ -729,9 +741,7 @@ angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $l
 				resolve();
 			})
 			.catch(function(err) {
-				$rootScope.loading = false;
-				console.log('contato '+serial+' nao pode ser excluido.');
-				console.log(err);
+				_handleError();
 				reject(err);
 			});
 
@@ -756,11 +766,17 @@ angular.module('listaTelefonica').service('operadorasAPI', function($q, configVa
 				resolve(_operadoras);
 			})
 			.catch(function(err) {
+				$rootScope.loading = false;
+				$location.path('/error');				
 				reject(err);
 			});
 		});
 	};
 });
+
+
+
+
 angular.module('listaTelefonica').filter('name', function() {
 	return function(input) {
 		var lista = input.split(' ');
@@ -783,7 +799,7 @@ angular.module('listaTelefonica').filter('ellipsis', function() {
 	};
 });
 angular.module('listaTelefonica').value('configValues', {	
-	apiBaseUrl: 'http://mauroao.openode.io/api',
+	apiBaseUrl: 'https://mauroao-lista-telefonica-api.herokuapp.com/api',
 	firestoreConfig: { 
 		apiKey: 'AIzaSyDOvpRFiUUnTNlJr2Nh9L1K0eWWiBP8lTc',
 		authDomain: 'projetofirestore.firebaseapp.com',
@@ -802,7 +818,7 @@ angular.module('listaTelefonica').value('configValues', {
 
 /* 
 	url do servico do node js na nuvem
-	apiBaseUrl: 'http://mauroao.openode.io/api' 
+	apiBaseUrl: 'https://mauroao-lista-telefonica-api.herokuapp.com/api' 
 */
 angular.module('listaTelefonica').config(function ($routeProvider) {
 

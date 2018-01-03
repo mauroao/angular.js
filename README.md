@@ -32,8 +32,10 @@ Logo em seguida, abrir a página no navegador. Exemplo:
 
 ## Deploy
 
-Executar o comando `grunt prod` para gerar a distribuicão na pasta `docs/` (diretório padrão para publicacão no [github.io](https://github.io)).
+* `grunt firestore-version` - para gerar a distribuicão na versão firestore;
+* `grunt http-version` - para gerar a distribuicão na versão http;
 
+ Os arquivos do deploy serão compilados para a pasta `docs/` (diretório padrão para publicacão no [github.io](https://github.io)).
 
 ## Back-end em Express 
 
@@ -58,4 +60,32 @@ Para selecionar qual será a origem dos dados que o front-end irá utilizar, seg
 3. Para Firebase, alterar o caminho para `services/firestore/`;
 4. Para serviço REST, alterar o caminho para `services/http/`;
 
-Uma versão publicada do aplicativo funcionando com base de dados Firebase está disponível [aqui](https://mauroao.github.io/angular.js)
+Abaixo um exemplo do código a ser comentado/descomentado (versão http):
+
+```html
+	<!--
+	<script src="js/services/firestore/fireStoreService.js"></script>
+	<script src="js/services/firestore/contatosAPIService.js"></script>
+	<script src="js/services/firestore/operadorasAPIService.js"></script>
+	-->
+
+	<script src="js/services/http/contatosAPIService.js"></script>
+	<script src="js/services/http/operadorasAPIService.js"></script>	
+```
+
+Abaixo um exemplo do código a ser comentado/descomentado (versão firestore):
+
+```html
+	<script src="js/services/firestore/fireStoreService.js"></script>
+	<script src="js/services/firestore/contatosAPIService.js"></script>
+	<script src="js/services/firestore/operadorasAPIService.js"></script>
+
+    <!--
+	<script src="js/services/http/contatosAPIService.js"></script>
+    <script src="js/services/http/operadorasAPIService.js"></script>	
+    -->
+```
+
+## On-Line DEMO
+
+[Lista Telefônica](https://mauroao.github.io/angular.js)

@@ -1,5 +1,10 @@
 angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $location, $q, configValues, fireStoreService) {
 
+	var _handleError = function() {
+		$rootScope.loading = false;
+		$location.path('/error');
+	};
+
 	var _getContatos = function() {	
 		$rootScope.loading = true;	
 		return $q(function(resolve, reject) {
@@ -12,7 +17,7 @@ angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $l
 				resolve(_contatos);
 			})
 			.catch(function(err) {
-				$rootScope.loading = false;
+				_handleError();
 				reject(err);
 			});
 		});
@@ -34,7 +39,7 @@ angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $l
 				}
 			})
 			.catch(function(err) {
-				$rootScope.loading = false;
+				_handleError();
 				reject(err);
 			});
 		});
@@ -52,7 +57,7 @@ angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $l
 				resolve();
 			})
 			.catch(function() {
-				$rootScope.loading = false;
+				_handleError();
 				reject();
 			});
 		});
@@ -68,9 +73,7 @@ angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $l
 				resolve();
 			})
 			.catch(function(err) {
-				$rootScope.loading = false;
-				console.log('contato '+serial+' nao pode ser excluido.');
-				console.log(err);
+				_handleError();
 				reject(err);
 			});
 

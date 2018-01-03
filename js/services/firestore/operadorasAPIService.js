@@ -9,8 +9,13 @@ angular.module('listaTelefonica').service('operadorasAPI', function($q, configVa
 				resolve(_operadoras);
 			})
 			.catch(function(err) {
+				$rootScope.loading = false;
+				$location.path('/error');				
 				reject(err);
 			});
 		});
 	};
 });
+
+
+

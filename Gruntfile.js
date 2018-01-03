@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       }
     },
     concat: {
-      tarefa1: {
+      firestore_version: {
         src: [
               'node_modules/angular/angular.min.js',
               'node_modules/angular-route/angular-route.min.js',
@@ -37,7 +37,35 @@ module.exports = function(grunt) {
         ],
         dest: 'docs/scripts.js'
       },
-      tarefa2: {
+      http_version: {
+        src: [
+              'node_modules/angular/angular.min.js',
+              'node_modules/angular-route/angular-route.min.js',
+              'lib/angular/angular-locale_pt-br.js',
+              'lib/serialGenerator/serialGenerator.js',
+              'lib/ui/ui.js',
+              'lib/ui/uiAccordion.js',
+              'lib/ui/uiDate.js',
+              'js/app.js',
+              'js/controllers/listaTelefonicaCtrl.js',
+              'js/controllers/novoContatoCtrl.js', 
+              'js/controllers/detalhesContatoCtrl.js',
+              'js/services/http/contatosAPIService.js',
+              'js/services/http/operadorasAPIService.js',
+              'js/filters/nameFilter.js',
+              'js/filters/ellipsisFilter.js',
+              'js/config/configValues.js',
+              'js/config/routeConfig.js',
+              'js/config/serialGeneratorConfig.js',
+              'js/directives/uiAlertDirective.js',
+              'js/interceptors/timestampInterceptor.js',
+              'js/interceptors/errorInterceptor.js',
+              'js/interceptors/loadingInterceptor.js',
+              'js/config/interceptorsConfig.js'
+        ],
+        dest: 'docs/scripts.js'
+      },      
+      css_files: {
         src: [
               'node_modules/bootstrap/dist/css/bootstrap.min.css',
               'css/app.css',
@@ -65,6 +93,16 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task(s).
-  grunt.registerTask('prod', ['jshint', 'concat', 'copy']);
+  grunt.registerTask('firestore-version', [
+    'jshint', 
+    'concat:firestore_version', 
+    'concat:css_files', 
+    'copy']);
+
+    grunt.registerTask('http-version', [
+      'jshint', 
+      'concat:http_version', 
+      'concat:css_files', 
+      'copy']);
 
 };
