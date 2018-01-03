@@ -10,8 +10,8 @@ module.exports = function(grunt) {
     concat: {
       tarefa1: {
         src: [
-              'node_modules/angular/angular.js',
-              'node_modules/angular-route/angular-route.js',
+              'node_modules/angular/angular.min.js',
+              'node_modules/angular-route/angular-route.min.js',
               'lib/angular/angular-locale_pt-br.js',
               'lib/serialGenerator/serialGenerator.js',
               'lib/ui/ui.js',
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
       },
       tarefa2: {
         src: [
-              'node_modules/bootstrap/dist/css/bootstrap.css',
+              'node_modules/bootstrap/dist/css/bootstrap.min.css',
               'css/app.css',
               'css/ui.css',
         ],
