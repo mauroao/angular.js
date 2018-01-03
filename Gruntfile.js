@@ -35,7 +35,7 @@ module.exports = function(grunt) {
               'js/interceptors/loadingInterceptor.js',
               'js/config/interceptorsConfig.js'
         ],
-        dest: '../docs/scripts.js'
+        dest: 'docs/scripts.js'
       },
       tarefa2: {
         src: [
@@ -43,18 +43,18 @@ module.exports = function(grunt) {
               'css/app.css',
               'css/ui.css',
         ],
-        dest: '../docs/styles.css'
+        dest: 'docs/styles.css'
       }
     },
     copy: {
       tarefa1: {
         src: ['view/*.html'], 
-        dest: '../docs/', 
+        dest: 'docs/', 
         filter: 'isFile'
       },
       tarefa2: {
         src: 'index.prod.html', 
-        dest: '../docs/index.html', 
+        dest: 'docs/index.html', 
         filter: 'isFile'
       }
     }
