@@ -52,15 +52,20 @@ Logo em seguida, abrir a página no navegador. Exemplo:
 
 O conteúdo da distribuicão será gerado na pasta `front-end/dist`.
 
-## Back-end alternativo em ASP.NET MVC Web API
+
+## Back-end em Express 
+
+* [Express](https://github.com/mauroao/expressjs)
+
+## Back-end em ASP.NET MVC Web API
 
 * [ASP.NET Web API](https://github.com/mauroao/asp-net-web-api)
 
-## Back-end alternativo em Java
+## Back-end em Java
 
 * [Java Jersey RESTful API](https://github.com/mauroao/java-jersey-rest-api)
 
-## Back-end alternativo na nuvem - Firebase/Firestore
+## Back-end na nuvem - Firebase/Firestore
 
 Foi incluída a opcão de persistência de dados no novo servico de banco de dados NoSQL do google: [Firebase](https://firebase.google.com).
 
