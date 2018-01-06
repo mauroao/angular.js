@@ -8,7 +8,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "grunt firestore-version"
+    "test": "grunt firestore-version && grunt http-version"
   },
   "repository": {
     "type": "git",
