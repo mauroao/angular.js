@@ -1,4 +1,4 @@
-# SPA com Angular JS
+# SPA com Angular JS [![Build Status](https://travis-ci.org/mauroao/angular.js.svg?branch=master)](https://travis-ci.org/mauroao/angular.js)
 
 ![angular logo](https://mauroao.github.io/angular.js/angular.png)
 
