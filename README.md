@@ -1,12 +1,14 @@
-# SPA com Angular JS [![Build Status](https://travis-ci.org/mauroao/angular.js.svg?branch=master)](https://travis-ci.org/mauroao/angular.js)
+# AngularJS SPA [![Build Status](https://travis-ci.org/mauroao/angular.js.svg?branch=master)](https://travis-ci.org/mauroao/angular.js)
 
 ![angular logo](https://mauroao.github.io/angular.js/angular.png)
 
 ## Introdução
 
-Este projeto contém o código fonte e instruções para rodar o aplicativo **Lista Telefônica**, que faz parte do curso de Angular JS do [Rodrigo Branas](https://www.youtube.com/user/rodrigobranas).
+Este repositório contém uma SPA (Single Page Application) escrita com o framework AngularJS.
+A aplicação contém um cadastro de contatos, onde é possível incluir e excluir contatos com nome, telefone, data de inclusão e operadora.
+O projeto foi baseado no curso de Angular JS do [Rodrigo Branas](https://www.youtube.com/user/rodrigobranas).
 
-O objetivo deste projeto é manter um histórico do aprendizado que tive com esse curso, bem como o exercício de implementação de diversas ferramentas de desenvolvimento open source, como Bower, Grunt, Node, Npm, live-server, angularjs, firebase, etc...
+O objetivo é o de manter um histórico do aprendizado que tive com esse curso, bem como o exercício no uso de diversas ferramentas de desenvolvimento open source, que adicionei ao projeto, como NodeJS, Npm, Grunt, live-server, angularjs, firebase, etc...
 
 ## Pré requisitos
 
@@ -37,17 +39,13 @@ Logo em seguida, abrir a página no navegador. Exemplo:
 
  Os arquivos do deploy serão compilados para a pasta `docs/` (diretório padrão para publicacão no [github.io](https://github.io)).
 
-## Back-end em Express 
+## Back-end
 
-* [Express](https://github.com/mauroao/expressjs)
+Este projeto consome uma API REST para ler e gravar os contatos. Todos os projetos abaixo fornecem uma API compatível e podem ser utilizados como origem dos dados:
 
-## Back-end em ASP.NET MVC Web API
-
-* [ASP.NET Web API](https://github.com/mauroao/asp-net-web-api)
-
-## Back-end em Java
-
-* [Java Jersey RESTful API](https://github.com/mauroao/java-jersey-rest-api)
+* ExpressJS - [github.com/mauroao/expressjs](https://github.com/mauroao/expressjs)
+* ASP.NET MVC Web API - [github.com/mauroao/asp-net-web-api](https://github.com/mauroao/asp-net-web-api)
+* Java Jersey RESTful API - [github.com/mauroao/java-jersey-rest-api](https://github.com/mauroao/java-jersey-rest-api)
 
 ## Back-end na nuvem - Firebase/Firestore
 
