@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="listaTelefonica">
+<head>
+	<title>Lista Telefônica</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" type="text/css" href="styles.css">
+
+	<!--scripts do Firebase/FireStore-->
+	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-firestore.js"></script>
+
+	<script src="scripts.js"></script>
+</head>
+<body>
+	<div ng-show="loading">
+		Carregando...
+	</div>
+
+	<div ng-hide="loading" class="container-fluid">
+		<div ng-view>
+			
+		</div>		
+	</div>
+	<p class="text-center">
+		<small>
+			API Address: <a href="{{api_version}}">{{api_version}}</a>
+		</small>
+	</p>	
+</body>
+</html> 
