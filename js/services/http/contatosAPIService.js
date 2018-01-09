@@ -1,6 +1,6 @@
 angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $http, $q, configValues) {
 
-	$rootScope.api_version = 'Versão http REST api. Adress="'+ configValues.apiBaseUrl+ '"';
+	$rootScope.api_version = configValues.apiBaseUrl.replace('/api','');
 
 	var _getContatos = function() {		
 		return $q(function(resolve, reject) {

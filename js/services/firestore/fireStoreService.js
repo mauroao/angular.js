@@ -1,6 +1,6 @@
 angular.module('listaTelefonica').service('fireStoreService', function($location, $rootScope, configValues){
 
-	$rootScope.api_version = 'Versão Firebase REST api. Adress="'+ configValues.firestoreConfig.databaseURL+ '"';
+	$rootScope.api_version = configValues.firestoreConfig.databaseURL;
 
 	var _db;
 
