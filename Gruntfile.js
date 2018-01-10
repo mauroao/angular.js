@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       }
     },
     concat: {
-      firestore_version: {
+      js_firestore: {
         src: [
               'node_modules/angular/angular.min.js',
               'node_modules/angular-route/angular-route.min.js',
@@ -35,9 +35,9 @@ module.exports = function(grunt) {
               'js/interceptors/loadingInterceptor.js',
               'js/config/interceptorsConfig.js'
         ],
-        dest: 'docs/scripts.js'
+        dest: 'docs/firestore/scripts.js'
       },
-      http_version: {
+      js_rest: {
         src: [
               'node_modules/angular/angular.min.js',
               'node_modules/angular-route/angular-route.min.js',
@@ -63,26 +63,44 @@ module.exports = function(grunt) {
               'js/interceptors/loadingInterceptor.js',
               'js/config/interceptorsConfig.js'
         ],
-        dest: 'docs/scripts.js'
+        dest: 'docs/rest/scripts.js'
       },      
-      css_files: {
+      css_firestore: {
         src: [
               'node_modules/bootstrap/dist/css/bootstrap.min.css',
               'css/app.css',
               'css/ui.css',
         ],
-        dest: 'docs/styles.css'
+        dest: 'docs/firestore/styles.css'
+      },      
+      css_rest: {
+        src: [
+              'node_modules/bootstrap/dist/css/bootstrap.min.css',
+              'css/app.css',
+              'css/ui.css',
+        ],
+        dest: 'docs/rest/styles.css'
       }
     },
     copy: {
-      tarefa1: {
+      html_firestore: {
         src: ['view/*.html'], 
-        dest: 'docs/', 
+        dest: 'docs/firestore/', 
         filter: 'isFile'
       },
-      tarefa2: {
+      index_firestore: {
         src: 'index.prod.html', 
-        dest: 'docs/index.html', 
+        dest: 'docs/firestore/index.html', 
+        filter: 'isFile'
+      },      
+      html_rest: {
+        src: ['view/*.html'], 
+        dest: 'docs/rest/', 
+        filter: 'isFile'
+      },
+      index_rest: {
+        src: 'index.prod.html', 
+        dest: 'docs/rest/index.html', 
         filter: 'isFile'
       }
     }
@@ -92,17 +110,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
-  // Default task(s).
-  grunt.registerTask('firestore-version', [
+  grunt.registerTask('prod', [
     'jshint', 
-    'concat:firestore_version', 
-    'concat:css_files', 
+    'concat', 
     'copy']);
-
-    grunt.registerTask('http-version', [
-      'jshint', 
-      'concat:http_version', 
-      'concat:css_files', 
-      'copy']);
 
 };

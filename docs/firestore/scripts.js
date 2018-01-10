@@ -645,46 +645,107 @@ angular.module('listaTelefonica').controller('novoContatoCtrl', function($scope,
 angular.module('listaTelefonica').controller('detalhesContatoCtrl', function($scope, $routeParams, contato) {
 	$scope.contato = contato;
 });
-angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $http, $q, configValues) {
+angular.module('listaTelefonica').service('fireStoreService', function($location, $rootScope, configValues){
 
-	$rootScope.api_version = configValues.apiBaseUrl.replace('/api','');
+	$rootScope.api_version = configValues.firestoreConfig.databaseURL;
 
-	var _getContatos = function() {		
+	var _db;
+
+	try {
+		$rootScope.loading = true;
+		firebase.initializeApp(configValues.firestoreConfig);
+		_db = firebase.firestore();
+	}
+	catch (e) {
+		var msg = (e && e.message) ? e.message : '';
+		$rootScope.loading = false;
+		console.log('Erro ao conectar com firebase - ' + msg);	
+		$location.path('/error');
+	}
+
+	$rootScope.loading = false;
+	this.db = _db;
+});
+angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $location, $q, configValues, fireStoreService) {
+
+	var _handleError = function() {
+		$rootScope.loading = false;
+		$location.path('/error');
+	};
+
+	var _getContatos = function() {	
+		$rootScope.loading = true;	
 		return $q(function(resolve, reject) {
-			$http.get(configValues.apiBaseUrl +'/contatos/').then(function(retorno) {
-				resolve(retorno.data);
-			},function(erro) {
-				reject(erro);
+			fireStoreService.db.collection('contatos').get()
+			.then(function(data) {
+				var _contatos = data.docs.map(function(item) {
+					return item.data();
+				});
+				$rootScope.loading = false;
+				resolve(_contatos);
+			})
+			.catch(function(err) {
+				_handleError();
+				reject(err);
 			});
 		});
 	};
 
 	var _getContato = function(serial) {
+		$rootScope.loading = true;
 		return $q(function(resolve, reject) {
-			$http.get(configValues.apiBaseUrl +'/contatos/' + serial).then(function(retorno) {
-				resolve(retorno.data);
-			},function(erro) {
-				reject(erro);
+			var docRef = fireStoreService.db.collection('contatos').doc(serial);
+
+			docRef.get().then(function(doc) {
+				if (doc.exists) {
+					$rootScope.loading = false;
+					resolve(doc.data());
+				} else {
+					console.log('contato não encontrado');
+					$location.path('/error');
+					reject();
+				}
+			})
+			.catch(function(err) {
+				_handleError();
+				reject(err);
 			});
-		});	
+		});
 	};
 
 	var _saveContato = function(contato) {
-		return $http.post(configValues.apiBaseUrl + '/contatos', contato);
+		$rootScope.loading = true;
+		return $q(function(resolve, reject) {
+			// fireStoreService.db.collection('contatos').add(contato).then(function() {
+			fireStoreService.db.collection('contatos')
+			.doc(contato.serial)
+			.set(contato)
+			.then(function() {
+				$rootScope.loading = false;
+				resolve();
+			})
+			.catch(function() {
+				_handleError();
+				reject();
+			});
+		});
 	};
 
 	var _deleteContato = function(serial) {
+		$rootScope.loading = true;
 		return $q(function(resolve, reject) {
-			$http.delete(configValues.apiBaseUrl + '/contatos/' + serial).then(function(retorno) {
-				if (retorno.data && retorno.data.deleted) {
-					resolve();
-				} else {
-					reject('Erro ao excluir registro ' + serial);
-				}
-			},function(erro) {
-				reject('Erro ao excluir registro ' + serial);
+			var docRef = fireStoreService.db.collection('contatos').doc(serial);
+			
+			docRef.delete().then(function() {
+				$rootScope.loading = false;
+				resolve();
+			})
+			.catch(function(err) {
+				_handleError();
+				reject(err);
 			});
-		});		
+
+		});
 	};	
 
 	return {
@@ -694,17 +755,28 @@ angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $h
 		getContato: _getContato
 	};
 });
-angular.module('listaTelefonica').service('operadorasAPI', function($http, configValues, $q){
+angular.module('listaTelefonica').service('operadorasAPI', function($q, configValues, fireStoreService){
 	this.getOperadoras = function() {
 		return $q(function(resolve, reject) {
-			$http.get(configValues.apiBaseUrl + '/operadoras').then(function(retorno) {
-				resolve(retorno.data);
-			},function(erro) {
-				reject(erro);
+			fireStoreService.db.collection('operadoras').get()
+			.then(function(data) {
+				var _operadoras = data.docs.map(function(item) {
+					return item.data();
+				});
+				resolve(_operadoras);
+			})
+			.catch(function(err) {
+				$rootScope.loading = false;
+				$location.path('/error');				
+				reject(err);
 			});
-		});		
+		});
 	};
 });
+
+
+
+
 angular.module('listaTelefonica').filter('name', function() {
 	return function(input) {
 		var lista = input.split(' ');
