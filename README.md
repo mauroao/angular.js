@@ -86,5 +86,5 @@ Abaixo um exemplo do código a ser comentado/descomentado (versão firestore):
 
 ## On-Line DEMO
 
-* [Lista Telefônica - versão firebase](https://mauroao.github.io/angular.js/firebase);
+* [Lista Telefônica - versão firestore](https://mauroao.github.io/angular.js/firestore);
 * [Lista Telefônica - versão http rest](https://mauroao.github.io/angular.js/rest);
