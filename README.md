@@ -34,8 +34,7 @@ Logo em seguida, abrir a página no navegador. Exemplo:
 
 ## Deploy
 
-* `grunt firestore-version` - para gerar a distribuicão na versão firestore;
-* `grunt http-version` - para gerar a distribuicão na versão http;
+* `grunt prod` - para gerar a distribuicão nas versões firestore e http;
 
  Os arquivos do deploy serão compilados para a pasta `docs/` (diretório padrão para publicacão no [github.io](https://github.io)).
 
