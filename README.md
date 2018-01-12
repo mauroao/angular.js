@@ -1,6 +1,6 @@
 # AngularJS SPA [![Build Status](https://travis-ci.org/mauroao/angular.js.svg?branch=master)](https://travis-ci.org/mauroao/angular.js)
 
-![angular logo](https://mauroao.github.io/angular.js/angular.png)
+![AngularJS SPA](https://raw.githubusercontent.com/mauroao/angular.js/master/docs/diagrama.draw.io.png)
 
 ## Introdução
 
