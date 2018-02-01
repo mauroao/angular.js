@@ -8,7 +8,7 @@ Este repositório contém uma SPA (Single Page Application) escrita com o framew
 A aplicação contém um cadastro de contatos, onde é possível incluir e excluir contatos com nome, telefone, data de inclusão e operadora.
 O projeto foi baseado no curso de Angular JS do [Rodrigo Branas](https://www.youtube.com/user/rodrigobranas).
 
-O objetivo é o de manter um histórico do aprendizado que tive com esse curso, bem como o exercício no uso de diversas ferramentas de desenvolvimento open source, que adicionei ao projeto, como NodeJS, Npm, Grunt, live-server, angularjs, firebase, etc...
+O objetivo é o de manter um histórico do aprendizado que tive com esse curso, bem como o exercício no uso de diversas ferramentas de desenvolvimento open source, que adicionei ao projeto, como NodeJS, Npm, Grunt, live-server, angularjs,  etc...
 
 ## Pré requisitos
 
@@ -34,7 +34,7 @@ Logo em seguida, abrir a página no navegador. Exemplo:
 
 ## Deploy
 
-* `grunt prod` - para gerar a distribuicão nas versões firestore e http;
+* `grunt prod` - para gerar a distribuicão;
 
  Os arquivos do deploy serão compilados para a pasta `docs/` (diretório padrão para publicacão no [github.io](https://github.io)).
 
