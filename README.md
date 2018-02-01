@@ -46,44 +46,6 @@ Este projeto consome uma API REST para ler e gravar os contatos. Todos os projet
 * ASP.NET MVC Web API - [github.com/mauroao/asp-net-web-api](https://github.com/mauroao/asp-net-web-api)
 * Java Jersey RESTful API - [github.com/mauroao/java-jersey-rest-api](https://github.com/mauroao/java-jersey-rest-api)
 
-## Back-end na nuvem - Firebase/Firestore
-
-Foi incluída a opcão de persistência de dados no novo servico de banco de dados NoSQL do google: [Firebase](https://firebase.google.com).
-
-Para selecionar qual será a origem dos dados que o front-end irá utilizar, seguir o procedimento abaixo:
-
-1. Editar o arquivo index.html;
-2. Localizar as linhas onde os arquivos de serviço são referenciados;
-3. Para Firebase, alterar o caminho para `services/firestore/`;
-4. Para serviço REST, alterar o caminho para `services/http/`;
-
-Abaixo um exemplo do código a ser comentado/descomentado (versão http):
-
-```html
-	<!--
-	<script src="js/services/firestore/fireStoreService.js"></script>
-	<script src="js/services/firestore/contatosAPIService.js"></script>
-	<script src="js/services/firestore/operadorasAPIService.js"></script>
-	-->
-
-	<script src="js/services/http/contatosAPIService.js"></script>
-	<script src="js/services/http/operadorasAPIService.js"></script>	
-```
-
-Abaixo um exemplo do código a ser comentado/descomentado (versão firestore):
-
-```html
-	<script src="js/services/firestore/fireStoreService.js"></script>
-	<script src="js/services/firestore/contatosAPIService.js"></script>
-	<script src="js/services/firestore/operadorasAPIService.js"></script>
-
-    <!--
-	<script src="js/services/http/contatosAPIService.js"></script>
-    <script src="js/services/http/operadorasAPIService.js"></script>	
-    -->
-```
-
 ## On-Line DEMO
 
-* [Lista Telefônica - versão firestore](https://mauroao.github.io/angular.js/firestore);
 * [Lista Telefônica - versão http rest](https://mauroao.github.io/angular.js/rest);
