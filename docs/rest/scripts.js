@@ -587,30 +587,17 @@ angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($sc
 	
 	$scope.contatos = contatos;
 
-	var apagarUmContato = function(serial) {
-		contatosAPI.deleteContato(serial).then(function() {
-			$scope.contatos = $scope.contatos.filter(function(contato) {
-				return contato.serial != serial;
+	$scope.apagarContato = function(contato) {
+		contatosAPI.deleteContato(contato.serial)
+			.then(function() {
+				return contatosAPI.getContatos();
+			})
+			.then(function(data) {
+				$scope.contatos = data;
+			})
+			.catch(function(errorMessage){
+				$scope.error = errorMessage;
 			});
-		}, function(errorMessage) {
-			$scope.error = errorMessage;
-		});
-	};
-
-	$scope.apagarContatos = function(contatos) {
-		var contatosExcluir = $scope.contatos.filter(function(contato) {
-			return contato.selecionado;
-		});
-
-		contatosExcluir.forEach(function(item, index) {
-			apagarUmContato(item.serial);
-		});
-	};
-
-	$scope.isContatoSelecionado = function(contatos) {
-		return contatos.some(function(contato) {
-			return contato.selecionado;
-		});
 	};
 
 	$scope.ordernarPor = function(campo) {
