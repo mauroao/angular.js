@@ -597,7 +597,7 @@ angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($sc
 
         var firstPage = 1;
         var lastPage = $scope.data.totalPages;
-        var linkCount = 5; // << 1 2 3 4 5 >>
+        var linkCount = 7; // << 1 2 3 4 5 >>
 		
 		$scope.links = [];
 		$scope.links.push($scope.currentPage);
@@ -759,7 +759,7 @@ angular.module('listaTelefonica').filter('ellipsis', function() {
 	};
 });
 angular.module('listaTelefonica').value('configValues', {	
-	PageSize: 15,
+	PageSize: 25,
 	apiBaseUrl: 'https://mauroao-lista-telefonica-api.herokuapp.com/api',
 	firestoreConfig: { 
 		apiKey: 'AIzaSyDOvpRFiUUnTNlJr2Nh9L1K0eWWiBP8lTc',
