@@ -3,7 +3,7 @@
 <head>
 	<title>Lista Telefônica</title>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
 	<link rel="stylesheet" type="text/css" href="styles.css">
 
@@ -18,15 +18,17 @@
 		Carregando...
 	</div>
 
-	<div ng-hide="loading" class="container-fluid">
+	<div ng-hide="loading">
 		<div ng-view>
 			
 		</div>		
 	</div>
+	<!--
 	<p class="text-center">
 		<small>
 			API Address: <a href="{{api_version}}">{{api_version}}</a>
 		</small>
 	</p>	
+	-->
 </body>
 </html> 

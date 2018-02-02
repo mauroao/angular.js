@@ -582,28 +582,71 @@ angular.module('ui').directive('uiDate', function($filter){
 	};
 });
 angular.module('listaTelefonica', ['serialGenerator', 'ui', 'ngRoute']);
-angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($scope, $filter, contatosAPI, contatos){
-	$scope.app='Lista Telefônica';
-	
-	$scope.contatos = contatos;
+angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($scope, $filter, contatosAPI, data){
+
+	$scope.data = {
+		paginatedData: []
+	};
+	$scope.links = [];
+	$scope.app = 'Lista Telefônica';
+	$scope.searchParam = '';
+	$scope.currentPage = 1;
+
+	var setData = function(_data) {
+		$scope.data = _data;	
+
+        var firstPage = 1;
+        var lastPage = $scope.data.totalPages;
+        var linkCount = 5; // << 1 2 3 4 5 >>
+		
+		$scope.links = [];
+		$scope.links.push($scope.currentPage);
+
+		var left = $scope.currentPage;
+		var right = $scope.currentPage;
+
+		while($scope.links.length < linkCount) {
+			if (right < lastPage) {
+				right++;
+				$scope.links.push(right);
+			}
+
+			if (left > firstPage) {
+				left--;
+				$scope.links.unshift(left);
+			}
+
+			if (right >= lastPage && left <= firstPage) {
+				break;
+			}
+		}		
+	};
+
+	setData(data);
 
 	$scope.apagarContato = function(contato) {
 		contatosAPI.deleteContato(contato.serial)
 			.then(function() {
-				return contatosAPI.getContatos();
+				return contatosAPI.getContatos($scope.currentPage, $scope.searchParam);
 			})
-			.then(function(data) {
-				$scope.contatos = data;
+			.then(function(_data) {
+				setData(_data);
+			})
+			.catch(function(errorMessage){
+				$scope.error = errorMessage;
+			});
+	}; 
+
+	$scope.getContatos = function(currentPage) {
+		$scope.currentPage = currentPage;
+		contatosAPI.getContatos($scope.currentPage, $scope.searchParam)
+			.then(function(_data) {
+				setData(_data);
 			})
 			.catch(function(errorMessage){
 				$scope.error = errorMessage;
 			});
 	};
-
-	$scope.ordernarPor = function(campo) {
-		$scope.criterioDeOrdenacao = campo;
-	}; 
-
 });
 
 
@@ -636,9 +679,11 @@ angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $h
 
 	$rootScope.api_version = configValues.apiBaseUrl.replace('/api','');
 
-	var _getContatos = function() {		
+	var _getContatos = function(currentPage, findName) {
+		var _url = configValues.apiBaseUrl+'/contatos?pagenumber='+currentPage+'&limit='+configValues.PageSize+'&findname='+findName;		
+		
 		return $q(function(resolve, reject) {
-			$http.get(configValues.apiBaseUrl +'/contatos/').then(function(retorno) {
+			$http.get(_url).then(function(retorno) {
 				resolve(retorno.data);
 			},function(erro) {
 				reject(erro);
@@ -714,6 +759,7 @@ angular.module('listaTelefonica').filter('ellipsis', function() {
 	};
 });
 angular.module('listaTelefonica').value('configValues', {	
+	PageSize: 15,
 	apiBaseUrl: 'https://mauroao-lista-telefonica-api.herokuapp.com/api',
 	firestoreConfig: { 
 		apiKey: 'AIzaSyDOvpRFiUUnTNlJr2Nh9L1K0eWWiBP8lTc',
@@ -741,8 +787,8 @@ angular.module('listaTelefonica').config(function ($routeProvider) {
 		templateUrl: 'view/contatos.html',
 		controller: 'listaTelefonicaCtrl',
 		resolve: {
-			contatos: function(contatosAPI) {
-				return contatosAPI.getContatos();
+			data: function(contatosAPI) {
+				return contatosAPI.getContatos(1, '');
 			}
 		}
 	});
@@ -794,7 +840,15 @@ angular.module('listaTelefonica').factory('timestampInterceptor', function() {
 		request: function(config) {
 			if (config.method == 'GET' && config.url.indexOf('/api/') > -1) {
 				var timestamp1 = new Date();
-				config.url += '?anticache=' + timestamp1.getTime();
+				var concat = '';
+
+				if (config.url.indexOf('?') == -1) { 
+					concat = '?';
+				} else {
+					concat = '&';
+				}
+
+				config.url += concat +'anticache=' + timestamp1.getTime();
 			}
 
 			return config;

@@ -1,40 +1,70 @@
-<div class="jumbotron">
+<nav class="navbar fixed-top navbar-dark bg-info">
+	<span ng-bind='app' class="navbar-brand d-none d-sm-block "></span>
+	<div class="navbar-nav">
+		<div class="row mx-2">
+			<div class="col-xs mr-2">
+				<input class="form-control form-control-sm" type="search" placeholder="O que você está buscando?" ng-model="searchParam">
+			</div>
+			<div class="col-xs">
+				<button class="btn btn-sm btn-secondary" ng-click="getContatos(1)">Pesquisar</button>
+			</div>
+		</div>
+	</div>
+</nav>
 
-	<h4 ng-bind='app'> </h4>
-	<input type="text" class="form-control" ng-model="criterioDeBusca" name="" placeholder="O que você está buscando?">
+<nav class="navbar fixed-bottom navbar-light bg-light border-top">
+	<ul class="pagination pagination-sm">
+		<li ng-class="{'page-item': true, 'active': pageNumber == currentPage}" ng-repeat="pageNumber in links">
+			<a class="page-link" href="#" ng-click="getContatos(pageNumber);$event.preventDefault();" >{{pageNumber}}</a>
+		</li>
+	</ul>
+
+	<span class="text-center d-none d-md-block">
+		<small>
+			API Address: <a href="{{api_version}}">{{api_version}}</a>
+		</small>
+	</span>
 	
-	<ui-alert ng-show="error" title="Ops, aconteceu um problema" message="error"></ui-alert>	
+	<span>
+		<small>
+			<strong>{{data.totalCount}}</strong> registros
+		</small>
+	</span>
 
-	<table class="table" ng-show="contatos.length > 0">
-		<tbody>
-			<tr>
-				<th class="hidden-xs hidden-sm" >Serial</th>
-				<th> <a href="" ng-click="ordernarPor('nome')">Nome</a></th>
-				<th> <a href="" ng-click="ordernarPor('telefone')">Telefone</a></th>
-				<th>Operadora</th>
-				<th class="hidden-xs hidden-sm">Data</th>
-				<th>.</th>
-			</tr>
-			<tr ng-repeat="contato in contatos | filter: {nome: criterioDeBusca} | orderBy: criterioDeOrdenacao" >
-				<td class="hidden-xs hidden-sm" >{{contato.serial}}</td>
-				<td> <a href="#!/detalhesContato/{{contato.serial}}"> {{contato.nome | name | ellipsis:10}} </a> </td>
+	<form action="" class="form-inline">
+		<a href="#!/novoContato" class="btn btn-sm btn-success mr-2">Novo Contato</a>
+	</form>
+</nav>
+
+<div class="container-fluid">
+	<small ng-show="data.paginatedData.length == 0">Nenhum contato</small> <!-- ???? -->
+	<ui-alert ng-show="error" title="Ops, aconteceu um problema" message="error"></ui-alert> <!-- ???? -->	
+
+    <table class="table table-responsive" ng-show="data.paginatedData.length > 0">
+        <thead class="thead-light">
+            <tr>
+                <th>Serial</th>
+                <th style="min-width: 300px;" >Nome</th>
+                <th style="min-width: 200px;">Telefone</th>
+                <th>Operadora</th>
+                <th style="min-width: 300px;">Data</th>
+                <th>.</th>
+            </tr>
+        </thead>
+        <tbody>
+			<tr ng-repeat="contato in data.paginatedData" >
+				<td>{{contato.serial}}</td>
+				<td> <a href="#!/detalhesContato/{{contato.serial}}"> {{contato.nome | name | ellipsis:20}} </a> </td>
 				<td>{{contato.telefone}}</td>
 				<td>{{contato.operadora.nome}}</td>
-				<td class="hidden-xs hidden-sm">{{contato.data | date: 'dd/MM/yyyy HH:mm' }}</td>
+				<td>{{contato.data | date: 'dd/MM/yyyy HH:mm' }}</td>
 				<td>
-					<button class="btn btn-danger btn-xs" 
+					<button class="btn btn-danger btn-sm" 
 						ng-click="apagarContato(contato)">
 						Excluir
 					</button>
 				</td>
-			</tr>				
-		</tbody>
-	</table>
-
-	<small ng-show="contatos.length == 0">Nenhum contato</small>
-
-	<hr>
-
-	<a href="#!/novoContato" class="btn btn-primary btn-block">Novo Contato</a>
-
+			</tr>
+        </tbody>
+    </table>
 </div>

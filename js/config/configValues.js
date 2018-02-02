@@ -1,4 +1,5 @@
 angular.module('listaTelefonica').value('configValues', {	
+	PageSize: 15,
 	apiBaseUrl: 'https://mauroao-lista-telefonica-api.herokuapp.com/api',
 	firestoreConfig: { 
 		apiKey: 'AIzaSyDOvpRFiUUnTNlJr2Nh9L1K0eWWiBP8lTc',

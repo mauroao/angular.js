@@ -2,9 +2,11 @@ angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $h
 
 	$rootScope.api_version = configValues.apiBaseUrl.replace('/api','');
 
-	var _getContatos = function() {		
+	var _getContatos = function(currentPage, findName) {
+		var _url = configValues.apiBaseUrl+'/contatos?pagenumber='+currentPage+'&limit='+configValues.PageSize+'&findname='+findName;		
+		
 		return $q(function(resolve, reject) {
-			$http.get(configValues.apiBaseUrl +'/contatos/').then(function(retorno) {
+			$http.get(_url).then(function(retorno) {
 				resolve(retorno.data);
 			},function(erro) {
 				reject(erro);
