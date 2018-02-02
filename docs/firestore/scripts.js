@@ -829,7 +829,7 @@ angular.module('listaTelefonica').filter('ellipsis', function() {
 	};
 });
 angular.module('listaTelefonica').value('configValues', {	
-	PageSize: 50,
+	PageSize: 100,
 	apiBaseUrl: 'https://mauroao-lista-telefonica-api.herokuapp.com/api',
 	firestoreConfig: { 
 		apiKey: 'AIzaSyDOvpRFiUUnTNlJr2Nh9L1K0eWWiBP8lTc',
@@ -851,6 +851,7 @@ angular.module('listaTelefonica').value('configValues', {
 	url do servico do node js na nuvem
 	apiBaseUrl: 'https://mauroao-lista-telefonica-api.herokuapp.com/api' 
 */
+
 angular.module('listaTelefonica').config(function ($routeProvider) {
 
 	$routeProvider.when('/contatos', {
