@@ -675,107 +675,48 @@ angular.module('listaTelefonica').controller('novoContatoCtrl', function($scope,
 angular.module('listaTelefonica').controller('detalhesContatoCtrl', function($scope, $routeParams, contato) {
 	$scope.contato = contato;
 });
-angular.module('listaTelefonica').service('fireStoreService', function($location, $rootScope, configValues){
+angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $http, $q, configValues) {
 
-	$rootScope.api_version = configValues.firestoreConfig.databaseURL;
+	$rootScope.api_version = configValues.apiBaseUrl.replace('/api','');
 
-	var _db;
-
-	try {
-		$rootScope.loading = true;
-		firebase.initializeApp(configValues.firestoreConfig);
-		_db = firebase.firestore();
-	}
-	catch (e) {
-		var msg = (e && e.message) ? e.message : '';
-		$rootScope.loading = false;
-		console.log('Erro ao conectar com firebase - ' + msg);	
-		$location.path('/error');
-	}
-
-	$rootScope.loading = false;
-	this.db = _db;
-});
-angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $location, $q, configValues, fireStoreService) {
-
-	var _handleError = function() {
-		$rootScope.loading = false;
-		$location.path('/error');
-	};
-
-	var _getContatos = function() {	
-		$rootScope.loading = true;	
+	var _getContatos = function(currentPage, findName) {
+		var _url = configValues.apiBaseUrl+'/contatos?pagenumber='+currentPage+'&limit='+configValues.PageSize+'&findname='+findName;		
+		
 		return $q(function(resolve, reject) {
-			fireStoreService.db.collection('contatos').get()
-			.then(function(data) {
-				var _contatos = data.docs.map(function(item) {
-					return item.data();
-				});
-				$rootScope.loading = false;
-				resolve(_contatos);
-			})
-			.catch(function(err) {
-				_handleError();
-				reject(err);
+			$http.get(_url).then(function(retorno) {
+				resolve(retorno.data);
+			},function(erro) {
+				reject(erro);
 			});
 		});
 	};
 
 	var _getContato = function(serial) {
-		$rootScope.loading = true;
 		return $q(function(resolve, reject) {
-			var docRef = fireStoreService.db.collection('contatos').doc(serial);
-
-			docRef.get().then(function(doc) {
-				if (doc.exists) {
-					$rootScope.loading = false;
-					resolve(doc.data());
-				} else {
-					console.log('contato não encontrado');
-					$location.path('/error');
-					reject();
-				}
-			})
-			.catch(function(err) {
-				_handleError();
-				reject(err);
+			$http.get(configValues.apiBaseUrl +'/contatos/' + serial).then(function(retorno) {
+				resolve(retorno.data);
+			},function(erro) {
+				reject(erro);
 			});
-		});
+		});	
 	};
 
 	var _saveContato = function(contato) {
-		$rootScope.loading = true;
-		return $q(function(resolve, reject) {
-			// fireStoreService.db.collection('contatos').add(contato).then(function() {
-			fireStoreService.db.collection('contatos')
-			.doc(contato.serial)
-			.set(contato)
-			.then(function() {
-				$rootScope.loading = false;
-				resolve();
-			})
-			.catch(function() {
-				_handleError();
-				reject();
-			});
-		});
+		return $http.post(configValues.apiBaseUrl + '/contatos', contato);
 	};
 
 	var _deleteContato = function(serial) {
-		$rootScope.loading = true;
 		return $q(function(resolve, reject) {
-			var docRef = fireStoreService.db.collection('contatos').doc(serial);
-			
-			docRef.delete().then(function() {
-				$rootScope.loading = false;
-				resolve();
-			})
-			.catch(function(err) {
-				_handleError();
-				reject(err);
+			$http.delete(configValues.apiBaseUrl + '/contatos/' + serial).then(function(retorno) {
+				if (retorno.data && retorno.data.deleted) {
+					resolve();
+				} else {
+					reject('Erro ao excluir registro ' + serial);
+				}
+			},function(erro) {
+				reject('Erro ao excluir registro ' + serial);
 			});
-
-		});
+		});		
 	};	
 
 	return {
@@ -785,28 +726,17 @@ angular.module('listaTelefonica').factory('contatosAPI', function($rootScope, $l
 		getContato: _getContato
 	};
 });
-angular.module('listaTelefonica').service('operadorasAPI', function($q, configValues, fireStoreService){
+angular.module('listaTelefonica').service('operadorasAPI', function($http, configValues, $q){
 	this.getOperadoras = function() {
 		return $q(function(resolve, reject) {
-			fireStoreService.db.collection('operadoras').get()
-			.then(function(data) {
-				var _operadoras = data.docs.map(function(item) {
-					return item.data();
-				});
-				resolve(_operadoras);
-			})
-			.catch(function(err) {
-				$rootScope.loading = false;
-				$location.path('/error');				
-				reject(err);
+			$http.get(configValues.apiBaseUrl + '/operadoras').then(function(retorno) {
+				resolve(retorno.data);
+			},function(erro) {
+				reject(erro);
 			});
-		});
+		});		
 	};
 });
-
-
-
-
 angular.module('listaTelefonica').filter('name', function() {
 	return function(input) {
 		var lista = input.split(' ');
@@ -830,22 +760,13 @@ angular.module('listaTelefonica').filter('ellipsis', function() {
 });
 angular.module('listaTelefonica').value('configValues', {	
 	PageSize: 100,
-	apiBaseUrl: 'https://mauroao-lista-telefonica-api.herokuapp.com/api',
-	firestoreConfig: { 
-		apiKey: 'AIzaSyDOvpRFiUUnTNlJr2Nh9L1K0eWWiBP8lTc',
-		authDomain: 'projetofirestore.firebaseapp.com',
-		databaseURL: 'https://projetofirestore.firebaseio.com',
-		projectId: 'projetofirestore',
-		storageBucket: 'projetofirestore.appspot.com',
-		messagingSenderId: '322473565928'
-	}
+	apiBaseUrl: 'https://mauroao-lista-telefonica-api.herokuapp.com/api'
 });
 
 /* 
 	url do servico interno do node js
 	apiBaseUrl: 'http://localhost:3000/api' 
 */
-
 
 /* 
 	url do servico do node js na nuvem
