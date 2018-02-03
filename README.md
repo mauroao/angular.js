@@ -48,4 +48,4 @@ Este projeto consome uma API REST para ler e gravar os contatos. Todos os projet
 
 ## On-Line DEMO
 
-* [Lista Telefônica - versão http rest](https://mauroao.github.io/angular.js/rest);
+* [Lista Telefônica](https://mauroao.github.io/angular.js/);
