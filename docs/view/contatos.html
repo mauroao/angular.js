@@ -13,11 +13,19 @@
 </nav>
 
 <nav class="navbar fixed-bottom navbar-light bg-light border-top">
-	<ul class="pagination pagination-sm">
+	
+	<!--ul class="pagination pagination-sm">
 		<li ng-class="{'page-item': true, 'active': pageNumber == currentPage}" ng-repeat="pageNumber in links">
 			<a class="page-link" href="#" ng-click="getContatos(pageNumber);$event.preventDefault();" >{{pageNumber}}</a>
 		</li>
-	</ul>
+	</ul-->
+	
+	<ui-paginator 
+		current-page="currentPage" 
+		last-page="data.totalPages"
+		links-count="7" 
+		on-click-link="getContatos(page);" >
+	</ui-paginator>
 
 	<span class="text-center d-none d-lg-block">
 		<small>

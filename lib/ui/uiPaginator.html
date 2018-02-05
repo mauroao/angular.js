@@ -1,0 +1,19 @@
+<ul class="pagination pagination-sm">
+    <li class="page-item">
+            <a class="page-link" href="#" ng-click="$event.preventDefault();$ctrl.onClickLink({page: 1});" >
+            &laquo;
+        </a>
+    </li>
+    <li 
+        ng-class="{'page-item': true, 'active': pageNumber == $ctrl.currentPage}" 
+        ng-repeat="pageNumber in $ctrl.links">
+        <a class="page-link" href="#" ng-click="$event.preventDefault();$ctrl.onClickLink({page: pageNumber});" >
+            {{pageNumber}} 
+        </a>
+    </li>
+    <li class="page-item">
+            <a class="page-link" href="#" ng-click="$event.preventDefault();$ctrl.onClickLink({page: $ctrl.lastPage});" >
+            &raquo;
+        </a>
+    </li>    
+</ul>

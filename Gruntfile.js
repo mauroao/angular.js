@@ -5,6 +5,8 @@ module.exports = function(grunt) {
     jshint: {
       tarefa1: {
         src: ['js/**/*.js']
+      },      tarefa1: {
+        src: ['lib/**/*.js']
       }
     },
     concat: {
@@ -17,6 +19,7 @@ module.exports = function(grunt) {
               'lib/ui/ui.js',
               'lib/ui/uiAccordion.js',
               'lib/ui/uiDate.js',
+              'lib/ui/uiPaginator.js',
               'js/app.js',
               'js/controllers/listaTelefonicaCtrl.js',
               'js/controllers/novoContatoCtrl.js', 
@@ -54,6 +57,11 @@ module.exports = function(grunt) {
       index: {
         src: 'index.prod.html', 
         dest: 'docs/index.html', 
+        filter: 'isFile'
+      },
+      components: {
+        src: 'lib/ui/uiPaginator.html',
+        dest: 'docs/lib/ui/uiPaginator.html',
         filter: 'isFile'
       }
     }

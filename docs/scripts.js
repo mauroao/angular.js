@@ -349,7 +349,7 @@ function(a,d){if(0===d)c.push(a);else{var e=a.match(/(\w+)(?:[?*])?(.*)/),f=e[1]
 }};a.$on("$locationChangeStart",p);a.$on("$locationChangeSuccess",l);return q}]}).run(A),I=d.$$minErr("ngRoute"),k;A.$inject=["$injector"];z.provider("$routeParams",function(){this.$get=function(){return{}}});z.directive("ngView",B);z.directive("ngView",C);B.$inject=["$route","$anchorScroll","$animate"];C.$inject=["$compile","$controller","$route"]})(window,window.angular);
 //# sourceMappingURL=angular-route.min.js.map
 
-'use strict';
+
 angular.module("ngLocale", [], ["$provide", function($provide) {
 var PLURAL_CATEGORY = {ZERO: "zero", ONE: "one", TWO: "two", FEW: "few", MANY: "many", OTHER: "other"};
 $provide.value("$locale", {
@@ -486,7 +486,7 @@ angular.module('serialGenerator').provider('serialGenerator', function() {
 
 	this.setLength = function(length) {
 		_length = length;
-	}
+	};
 
 	this.$get = function() {
 		return {
@@ -494,7 +494,7 @@ angular.module('serialGenerator').provider('serialGenerator', function() {
 				var serial = '';
 				while(serial.length < _length) {
 					serial += String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-				};
+				}
 				return serial;
 
 			}
@@ -581,48 +581,52 @@ angular.module('ui').directive('uiDate', function($filter){
 		}
 	};
 });
+angular.module('ui').component('uiPaginator', {
+    templateUrl: 'lib/ui/uiPaginator.html',
+    bindings: {
+        currentPage: '<',
+        linksCount: '<',
+        lastPage: '<',
+        onClickLink: '&' 
+    },
+    controller: function() {
+        var $ctrl = this;
+        $ctrl.links = [];
+
+        $ctrl.$onChanges = function(changes) {
+            var firstPage = 1;
+            
+            $ctrl.links = [];
+            $ctrl.links.push($ctrl.currentPage);
+    
+            var left = $ctrl.currentPage;
+            var right = $ctrl.currentPage;
+    
+            while($ctrl.links.length < $ctrl.linksCount) {
+                if (right < $ctrl.lastPage) {
+                    right++;
+                    $ctrl.links.push(right);
+                }
+    
+                if (left > firstPage) {
+                    left--;
+                    $ctrl.links.unshift(left);
+                }
+    
+                if (right >= $ctrl.lastPage && left <= firstPage) {
+                    break;
+                }
+            }            
+        };
+    }
+});
 angular.module('listaTelefonica', ['serialGenerator', 'ui', 'ngRoute']);
 angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($scope, $filter, contatosAPI, data){
 
-	$scope.data = {
-		paginatedData: []
-	};
-	$scope.links = [];
 	$scope.app = 'Lista Telefônica';
-	$scope.searchParam = '';
 	$scope.currentPage = 1;
-
-	var setData = function(_data) {
-		$scope.data = _data;	
-
-        var firstPage = 1;
-        var lastPage = $scope.data.totalPages;
-        var linkCount = 7; // << 1 2 3 4 5 >>
-		
-		$scope.links = [];
-		$scope.links.push($scope.currentPage);
-
-		var left = $scope.currentPage;
-		var right = $scope.currentPage;
-
-		while($scope.links.length < linkCount) {
-			if (right < lastPage) {
-				right++;
-				$scope.links.push(right);
-			}
-
-			if (left > firstPage) {
-				left--;
-				$scope.links.unshift(left);
-			}
-
-			if (right >= lastPage && left <= firstPage) {
-				break;
-			}
-		}		
-	};
-
-	setData(data);
+	$scope.data = data;
+	$scope.searchParam = '';
 
 	$scope.apagarContato = function(contato) {
 		contatosAPI.deleteContato(contato.serial)
@@ -630,7 +634,7 @@ angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($sc
 				return contatosAPI.getContatos($scope.currentPage, $scope.searchParam);
 			})
 			.then(function(_data) {
-				setData(_data);
+				$scope.data = _data;
 			})
 			.catch(function(errorMessage){
 				$scope.error = errorMessage;
@@ -641,7 +645,7 @@ angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($sc
 		$scope.currentPage = currentPage;
 		contatosAPI.getContatos($scope.currentPage, $scope.searchParam)
 			.then(function(_data) {
-				setData(_data);
+				$scope.data = _data;
 			})
 			.catch(function(errorMessage){
 				$scope.error = errorMessage;
