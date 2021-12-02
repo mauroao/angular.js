@@ -15,8 +15,7 @@ O objetivo é o de manter um histórico do aprendizado que tive com esse curso, 
 É necessário ter as ferramentas abaixo:
 
 * [Node.js](https://nodejs.org/en/);
-* [Grunt](https://gruntjs.com/)
-* Um Webserver para rodar a página principal, como o [http-server](https://www.npmjs.com/package/http-server) ou [live-server](https://www.npmjs.com/package/live-server);
+* [Grunt](https://gruntjs.com/);
 
 ## Como instalar
 
@@ -26,11 +25,9 @@ O objetivo é o de manter um histórico do aprendizado que tive com esse curso, 
 
 ## Como executar
 
-Executar um webserver como o [http-server](https://www.npmjs.com/package/http-server) ou [live-server](https://www.npmjs.com/package/live-server);
-
-Logo em seguida, abrir a página no navegador. Exemplo:
-
-`http://localhost:8080/front-end`
+```
+npm start
+```
 
 ## Deploy
 
@@ -43,8 +40,7 @@ Logo em seguida, abrir a página no navegador. Exemplo:
 Este projeto consome uma API REST para ler e gravar os contatos. Todos os projetos abaixo fornecem uma API compatível e podem ser utilizados como origem dos dados:
 
 * ExpressJS - [github.com/mauroao/expressjs](https://github.com/mauroao/expressjs)
-* ASP.NET MVC Web API - [github.com/mauroao/asp-net-web-api](https://github.com/mauroao/asp-net-web-api)
-* Java Jersey RESTful API - [github.com/mauroao/java-jersey-rest-api](https://github.com/mauroao/java-jersey-rest-api)
+
 
 ## On-Line DEMO
 

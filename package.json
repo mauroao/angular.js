@@ -8,7 +8,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "grunt prod"
+    "test": "grunt prod",
+    "start": "http-server -o"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,8 @@
     "grunt": "^1.0.1",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-jshint": "^1.1.0"
+    "grunt-contrib-jshint": "^1.1.0",
+    "http-server": "^14.0.0"
   },
   "dependencies": {
     "angular": "^1.6.4",
